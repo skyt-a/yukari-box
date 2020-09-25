@@ -16,7 +16,7 @@ const App: React.FC<unknown> = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/room" element={<YukariRoom />} />
-          <Route path="*" element={<Navigate to="/top" replace />} />;
+          <Route path="*" element={<Navigate to="/room" replace />} />;
         </Routes>
       </BrowserRouter>
     </div>
