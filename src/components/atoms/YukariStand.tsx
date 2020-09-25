@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import Normal from '../../assets/images/yukari_normal.png';
-import Kiri from '../../assets/images/yukari_kiri.png';
-import LaughOpen from '../../assets/images/yukari_laugh_open.png';
+import Normal from '../../assets/images/stands/yukari_normal.png';
+import Kiri from '../../assets/images/stands/yukari_kiri.png';
+import LaughOpen from '../../assets/images/stands/yukari_laugh_open.png';
 
 export const StandImage = {
   Normal,

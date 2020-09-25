@@ -1,17 +1,27 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import { FadeIn } from 'styles/animations';
 
 type Props = {
   texts: string[];
+  onAnimationStart: () => void;
+  onAnimationEnd: () => void;
 };
 
-const SpeechBubble: React.FC<Props> = ({ texts, ...rest }) => {
+const SpeechBubble: React.FC<Props> = ({
+  texts,
+  onAnimationStart,
+  onAnimationEnd,
+  ...rest
+}) => {
   const [index, setIndex] = useState(0);
   const addIndex = useCallback(() => {
     setIndex((index) => index + 1);
   }, [setIndex]);
   const textArr = useMemo(() => texts[index]?.split(''), [texts, index]);
   if (!textArr) {
+    onAnimationEnd();
+
     return null;
   }
 
@@ -24,6 +34,12 @@ const SpeechBubble: React.FC<Props> = ({ texts, ...rest }) => {
               animation-delay: ${i * 0.1}s;
             `}
             key={`${i + t}`}
+            onAnimationStart={
+              i !== textArr.length - 1 ? onAnimationStart : undefined
+            }
+            onAnimationEnd={
+              i === textArr.length - 1 ? onAnimationEnd : undefined
+            }
           >
             {t}
           </Letter>
@@ -56,16 +72,6 @@ const Text = styled.p`
   margin: 0;
   padding: 0;
   letter-spacing: 0.1em;
-`;
-
-const FadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 `;
 
 const Letter = styled.span`

@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StandImageKey } from 'components/atoms/YukariStand';
+import { useRecoilValue } from 'recoil';
+import { yukariSpeakingState } from 'states/yukari';
 
-export const useSpeakingYukari = () => {
+export const useSpeakingYukari = (): StandImageKey => {
   const [standKey, setStandKey] = useState<StandImageKey>('Normal');
+  const isSpeaking = useRecoilValue(yukariSpeakingState);
+  const speak = useCallback(() => {
+    setStandKey((standKey) => (standKey === 'Normal' ? 'LaughOpen' : 'Normal'));
+  }, [setStandKey]);
   useEffect(() => {
-    const key = setInterval(
-      () =>
-        setStandKey((standKey) =>
-          standKey === 'Normal' ? 'LaughOpen' : 'Normal',
-        ),
-      150,
-    );
+    const key = isSpeaking && setInterval(speak, 150);
 
-    return () => {
-      clearInterval(key);
+    return (): void => {
+      if (key) {
+        setStandKey('Normal');
+        clearInterval(key);
+      }
     };
-  }, []);
+  }, [speak, isSpeaking]);
 
   return standKey;
 };
