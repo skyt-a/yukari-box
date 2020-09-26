@@ -72,6 +72,7 @@ const LoadingBarInner = styled.div`
 const Logo = styled.img`
   max-width: 200px;
   height: auto;
+  align-self: flex-start;
 `;
 
 const Message = styled.span`
