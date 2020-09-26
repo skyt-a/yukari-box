@@ -8,7 +8,7 @@ const Dialogues = [
   'このページはWebエンジニアりんごくのポートフォリオページです',
 ];
 
-const YukariRoom = () => {
+const YukariRoom: React.FC<unknown> = () => {
   return (
     <BackGround>
       <YukariSpeaking dialogues={Dialogues} />

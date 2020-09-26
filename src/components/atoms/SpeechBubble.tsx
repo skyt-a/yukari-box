@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { FadeIn } from 'styles/animations';
+import { deviceMax } from 'styles/device';
 
 type Props = {
   texts: string[];
@@ -66,12 +67,22 @@ const Frame = styled.div`
   font-size: 20px;
   font-weight: 700;
   color: #fff;
+
+  @media ${deviceMax.mobileL} {
+    margin: 0;
+    max-width: 85vw;
+  }
 `;
 
 const Text = styled.p`
   margin: 0;
   padding: 0;
   letter-spacing: 0.1em;
+  word-break: break-all;
+  text-align: left;
+  @media ${deviceMax.mobileL} {
+    font-size: 16px;
+  }
 `;
 
 const Letter = styled.span`
