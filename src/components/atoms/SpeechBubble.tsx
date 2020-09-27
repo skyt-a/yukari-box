@@ -1,18 +1,23 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
+import { BorderDashedFrame } from 'styles';
 import { FadeIn } from 'styles/animations';
 import { deviceMax } from 'styles/device';
 
 type Props = {
   texts: string[];
+  textSpeed?: number;
   onAnimationStart: () => void;
   onAnimationEnd: () => void;
+  onTextsEnd?: () => void;
 };
 
 const SpeechBubble: React.FC<Props> = ({
   texts,
   onAnimationStart,
   onAnimationEnd,
+  onTextsEnd,
+  textSpeed = 20,
   ...rest
 }) => {
   const [index, setIndex] = useState(0);
@@ -20,8 +25,15 @@ const SpeechBubble: React.FC<Props> = ({
     setIndex((index) => index + 1);
   }, [setIndex]);
   const textArr = useMemo(() => texts[index]?.split(''), [texts, index]);
+  useEffect(() => {
+    setIndex(0);
+  }, [texts]);
+
   if (!textArr) {
     onAnimationEnd();
+    if (onTextsEnd) {
+      onTextsEnd();
+    }
 
     return null;
   }
@@ -32,7 +44,8 @@ const SpeechBubble: React.FC<Props> = ({
         {textArr.map((t, i) => (
           <Letter
             css={`
-              animation-delay: ${i * 0.1}s;
+              animation-delay: ${i / textSpeed}s;
+              animation-duration: ${1 / textSpeed}s;
             `}
             key={`${i + t}`}
             onAnimationStart={
@@ -52,21 +65,12 @@ const SpeechBubble: React.FC<Props> = ({
 };
 
 const Frame = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.2em 0.5em;
-  margin: 2em 10%;
-  background: #cc7eb1;
-  box-shadow: 0px 0px 0px 10px #cc7eb1;
-  border: dashed 2px white;
+  ${BorderDashedFrame}
   width: 100%;
   max-width: 700px;
   min-height: 120px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
+  margin: 2em 10%;
+  cursor: pointer;
 
   @media ${deviceMax.mobileL} {
     margin: 0;
@@ -87,7 +91,6 @@ const Text = styled.p`
 
 const Letter = styled.span`
   animation-name: ${FadeIn};
-  animation-duration: 0.1s;
   animation-fill-mode: forwards;
   opacity: 0;
 `;

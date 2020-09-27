@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
+import { deviceMax } from 'styles/device';
 import Normal from '../../assets/images/stands/yukari_normal.png';
 import Kiri from '../../assets/images/stands/yukari_kiri.png';
 import LaughOpen from '../../assets/images/stands/yukari_laugh_open.png';
@@ -31,6 +32,10 @@ const Container = styled.div`
 
 const Yukari = styled.img`
   max-width: 100vw;
+  @media ${deviceMax.mobileL} {
+    transform: scale(1.55);
+    transform-origin: top;
+  }
 `;
 
 export default YukariStand;

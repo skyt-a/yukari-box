@@ -9,9 +9,15 @@ import { FadeIn } from 'styles/animations';
 
 type Props = {
   dialogues: string[];
+  onSpeakEnd?: () => void;
+  textSpeed?: number;
 };
 
-const YukariSpeaking: React.FC<Props> = ({ dialogues }) => {
+const YukariSpeaking: React.FC<Props> = ({
+  dialogues,
+  onSpeakEnd,
+  textSpeed,
+}) => {
   const standKey = useSpeakingYukari();
   const setIsSpeaking = useSetRecoilState(yukariSpeakingState);
   const [isYukariAppear, setIsYukariAppear] = useState(false);
@@ -34,6 +40,7 @@ const YukariSpeaking: React.FC<Props> = ({ dialogues }) => {
         <BubbleWrapper>
           <StyledSpeechBubble
             texts={dialogues}
+            onTextsEnd={onSpeakEnd}
             {...{ onAnimationStart, onAnimationEnd }}
           />
         </BubbleWrapper>
