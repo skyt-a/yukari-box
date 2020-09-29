@@ -6,8 +6,8 @@ import { useInitialLoading } from 'hooks/useInitialLoading';
 import InitialLoading from 'components/pages/InitialLoading';
 import AboutMe from 'components/pages/AboutMe';
 import { Helmet } from 'react-helmet';
-import normalImg from './assets/images/stands/yukari_normal.png';
-import laughImg from './assets/images/stands/yukari_laugh_open.png';
+import normalImg from './assets/images/stands/youmu_normal.png';
+import laughImg from './assets/images/stands/youmu_laugh_open.png';
 
 const App: React.FC<unknown> = () => {
   const [loadingSeconds, isInitialLoading] = useInitialLoading();

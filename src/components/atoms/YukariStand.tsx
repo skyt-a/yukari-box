@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { deviceMax } from 'styles/device';
-import Normal from '../../assets/images/stands/yukari_normal.png';
+import Normal from '../../assets/images/stands/youmu_normal.png';
 import Kiri from '../../assets/images/stands/yukari_kiri.png';
-import LaughOpen from '../../assets/images/stands/yukari_laugh_open.png';
+import LaughOpen from '../../assets/images/stands/youmu_laugh_open.png';
 
 export const StandImage = {
   Normal,
@@ -21,20 +21,25 @@ const YukariStand: React.FC<Props> = ({ standKey }) => {
 
   return (
     <Container>
-      <Yukari src={standImage} alt="Voiceroid結月ゆかりの立ち絵です" />
+      <Yukari src={standImage} alt="魂魄妖夢の立ち絵です" />
     </Container>
   );
 };
 
 const Container = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
 `;
 
 const Yukari = styled.img`
+  position: fixed;
+  bottom: 0;
   max-width: 100vw;
+  max-height: 80vh;
+  transform: scale(1.2);
   @media ${deviceMax.mobileL} {
-    transform: scale(1.55);
-    transform-origin: top;
+    transform: scale(1);
   }
 `;
 

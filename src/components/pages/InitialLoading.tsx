@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { ThemeColor } from 'styles/color';
 import LogoImg from '../../assets/images/logo.png';
 
 type Props = {
@@ -21,7 +22,7 @@ const InitialLoading: React.FC<Props> = ({ loadingSeconds }) => {
   return (
     <Wrapper>
       <Inner>
-        <Logo src={LogoImg} />
+        {/* <Logo src={LogoImg} /> */}
         <LoadingBar>
           <LoadingBarInner
             css={`
@@ -41,7 +42,7 @@ const Wrapper = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #824880;
+  background-color: ${ThemeColor.main};
   z-index: 100;
   display: flex;
   align-items: center;

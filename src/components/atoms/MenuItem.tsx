@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ThemeColor } from 'styles/color';
 
 type Prop = {
   onClick?: () => void;
@@ -23,7 +24,7 @@ const MenuItem: React.FC<Prop> = ({
 
 const Frame = styled.div`
   height: 60px;
-  background-color: #cc7eb1;
+  background-color: ${ThemeColor.sub};
   cursor: pointer;
 `;
 

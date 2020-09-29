@@ -6,11 +6,12 @@ import MenuItem from 'components/atoms/MenuItem';
 import { useRecoilState } from 'recoil';
 import { yukariSpeakedFirstdialogueState } from 'states/yukari';
 import { deviceMax } from 'styles/device';
+import { ThemeColor } from 'styles/color';
 
 const Dialogues = [
-  'こんにちは、結月ゆかりです',
+  'こんにちは、魂魄妖夢です',
   'このページはWebエンジニアりんごくのポートフォリオページです',
-  'メニューから見たい情報を選んでね',
+  'メニューから見たい情報を選んでくださいね',
 ];
 
 const DialoguesAboutYukari = ['私についての紹介ページです'];
@@ -117,7 +118,7 @@ const BackGround = styled.div`
   width: 100vw;
   height: 100%;
   min-height: 100vh;
-  background-color: #a69abd;
+  background-color: ${ThemeColor.main};
   overflow-x: hidden;
 `;
 
