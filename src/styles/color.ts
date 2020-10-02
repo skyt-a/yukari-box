@@ -1,4 +1,4 @@
 export const ThemeColor = {
-  main: '#5c9291',
+  main: '#d6e9ca',
   sub: '#00a497',
 } as const;
